@@ -2,11 +2,11 @@
 
 This step-by-step guide details how to deploy an edit host, storage, and connectivity on AWS. This template allows users to build additional features, and add functionality, into an Amazon Elastic Compute Cloud (Amazon EC2) deployment. By incorporating Amazon FSx for Windows File Server, you can utilize a central repository for your media assets while providing an easy connection to your EC2 instance. The template also includes AWS Directory Services for federated login to allow for seamless editorial experience. Once you are logged into AWS Management Console, use this AWS CloudFormation deployment template.
 
-When deploying this solution, you are able to select from either Teradici CAS (https://www.teradici.com/products/CAS-cloud-access-software) or NICE DCV (https://aws.amazon.com/hpc/dcv/) as the Remote Display Protocol installed on the EC2 based Edit Workstation. 
+When deploying this guidance, you are able to select from either Teradici CAS (https://www.teradici.com/products/CAS-cloud-access-software) or NICE DCV (https://aws.amazon.com/hpc/dcv/) as the Remote Display Protocol installed on the EC2 based Edit Workstation. 
 
 ## Teradici CAS Installation Notes
 
-In order to download the Teradici CAS Graphics Agent for Windows, customers are issued with a unique download token by Teradici. This solution prompts for this token as a parameter of the CloudFormation template used to deploy from. 
+In order to download the Teradici CAS Graphics Agent for Windows, customers are issued with a unique download token by Teradici. This guidance prompts for this token as a parameter of the CloudFormation template used to deploy from. 
 
 To obtain the download token from Teradici:
 
@@ -17,15 +17,15 @@ To obtain the download token from Teradici:
 5. You will be prompted to agree to an EULA. 
 6. After reviewing and agreeing to the EULA, click on the "Download using a script" link.
 7. Example download commands using cURL will be displayed. Each sample command contains a download URL which contains a 16-character token that immediately follows "https://dl.teradici.com/", for example "https://dl.teradici.com/1234567890abcdef/pcoip-agent/...." where "1234567890abcdef" is the token. Copy this token, it is unique to your Teradici login. 
-8. Use this token in the TeradiciDownloadToken parameter required by the CloudFormation template in this solution. 
+8. Use this token in the TeradiciDownloadToken parameter required by the CloudFormation template in this guidance. 
 
 Teradici client software can also be obtained from the same site. 
 
-Teradici CAS installations require a subscription which can be obtained from Teradici. Please see the Edit in the Cloud on AWS Implementation Guide (https://docs.aws.amazon.com/solutions/latest/aws-edit-in-the-cloud/welcome.html) for details on obtaining and applying a license for this sofware after the solution is deployed. 
+Teradici CAS installations require a subscription which can be obtained from Teradici. Please see the Edit in the Cloud on AWS Implementation Guide (https://aws-solutions-library-samples.github.io/media-entertainment/edit-in-the-cloud-on-aws.html) for details on obtaining and applying a license for this sofware after the guidance is deployed. 
 
 ## NICE DCV Installation Notes
 
-You do not need a license server to install and use NICE DCV on an EC2 instance. This solution sets up the necessary access to a specific S3 bucket which is used to obtain a license for NICE DCV when running on EC2. 
+You do not need a license server to install and use NICE DCV on an EC2 instance. This guidance sets up the necessary access to a specific S3 bucket which is used to obtain a license for NICE DCV when running on EC2. 
 
 NICE DCV clients for Windows, MacOS and Linux can be downloaded from https://download.nice-dcv.com/ 
 
@@ -46,7 +46,7 @@ export BUILD_OUTPUT_BUCKET=$DIST_OUTPUT_BUCKET-$REGION_TO_TEST
 export CFN_TEMPLATE="aws-edit-in-the-cloud.template"
 ```
 
-_Note:_ You would have to create an S3 bucket with the prefix 'my_s3_bucket-<aws_region>'; aws_region is where you are testing the customized solution. Also, the assets in bucket should be publicly accessible.
+_Note:_ You would have to create an S3 bucket with the prefix 'my_s3_bucket-<aws_region>'; aws_region is where you are testing the customized guidance. Also, the assets in bucket should be publicly accessible.
 
 * Now build the distributable:
 
@@ -72,13 +72,13 @@ aws s3 cp global-s3-assets/  s3://$TEMPLATE_OUTPUT_BUCKET/$SOLUTION_NAME/$VERSIO
 aws s3 cp regional-s3-assets/ s3://$BUILD_OUTPUT_BUCKET/$SOLUTION_NAME/$VERSION/ --recursive --acl bucket-owner-full-control
 ```
 
-* Get the link of the solution template uploaded to your Amazon S3 bucket.
+* Get the link of the guidance template uploaded to your Amazon S3 bucket.
 
 ```sh
 echo "https://s3.amazonaws.com/$TEMPLATE_OUTPUT_BUCKET/$SOLUTION_NAME/$VERSION/$CFN_TEMPLATE"
 ```
 
-* Deploy the solution to your account by launching a new AWS CloudFormation stack using the link of the solution template in Amazon S3.
+* Deploy the guidance to your account by launching a new AWS CloudFormation stack using the link of the guidance template in Amazon S3.
 
 ***
 
@@ -93,9 +93,9 @@ echo "https://s3.amazonaws.com/$TEMPLATE_OUTPUT_BUCKET/$SOLUTION_NAME/$VERSION/$
 
 ***
 
-This solution collects anonymized operational metrics to help AWS improve the
-quality of features of the solution. For more information, including how to disable
-this capability, please see the [implementation guide](https://docs.aws.amazon.com/solutions/latest/aws-edit-in-the-cloud/collection-of-operational-metrics.html)
+This guidance collects anonymized operational metrics to help AWS improve the
+quality of features of the guidance. For more information, including how to disable
+this capability, please see the [implementation guide](https://aws-solutions-library-samples.github.io/media-entertainment/edit-in-the-cloud-on-aws.html)
 
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
